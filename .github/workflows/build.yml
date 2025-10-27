@@ -58,6 +58,12 @@ jobs:
           cp pandoc/algo.latex ~/.pandoc/templates/
           bash pandoc/gen.sh
 
+      - name: Archive results
+        uses: actions/upload-artifact@v4
+        with:
+          name: template
+          path: template.pdf
+
       - name: Release
         uses: softprops/action-gh-release@v2
         if: github.ref_type == 'tag'
