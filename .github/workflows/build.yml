@@ -57,12 +57,9 @@ jobs:
           mkdir -p ~/.pandoc/templates
           cp pandoc/algo.latex ~/.pandoc/templates/
           bash pandoc/gen.sh
-          mkdir build
-          cp template.pdf build/template.pdf
 
       - name: Release
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
-          folder: build
-          branch: gh-pages
-          clean: false
+          files: template.pdf
